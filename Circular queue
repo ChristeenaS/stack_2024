@@ -1,0 +1,59 @@
+class Queue:
+    def __init__(self,max_size):
+        self.size =max_size
+        self.queue = [None] * self.size
+        self.front = -1
+        self.rear = -1
+        
+    def enqueue(self,data):
+        if self.isFull():
+            print("Queue is Full")
+            return
+        elif self.isEmpty():
+            self.front = self.rear = 0
+            self.queue[self.rear] =data
+        else:
+            self.rear = (self.rear+1) % self.size
+        self.queue[self.rear] =data
+        print("Enqueue : ", data)
+            
+    def isFull(self):
+        return self.front == (self.rear + 1) % self.size
+        
+    def peek(self):
+        if self.isEmpty():
+            print("Queue is Empty")
+            return
+        else:
+            return self.queue[self.front]
+        
+    def dequeue(self):
+        if self.isEmpty():
+            print("Queue is Empty")
+            return
+        print("Dequue : ", self.queue[self.front])
+        
+        if self.front == self.rear:
+            self.front = self.rear = -1
+        else:
+            self.front = (self.front + 1) % self.size
+            
+    def isEmpty(self):
+        return self.front == self.rear ==-1
+        
+queue = Queue(3)
+queue.enqueue(11)
+queue.enqueue(12)
+queue.enqueue(13)
+queue.enqueue(14)
+print("Front element is = ", queue.peek())
+queue.dequeue()
+queue.enqueue(14)
+queue.dequeue()
+queue.enqueue(15)
+queue.enqueue(16)
+queue.dequeue()
+queue.dequeue()
+queue.dequeue()
+queue.dequeue()
+
