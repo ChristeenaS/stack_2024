@@ -11,6 +11,7 @@ class Queue:
             return
         elif self.isEmpty():
             self.front = self.rear = 0
+            self.queue[self.rear] =data
         else:
             self.rear +=1
         self.queue[self.rear] =data
