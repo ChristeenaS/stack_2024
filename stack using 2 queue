@@ -1,0 +1,42 @@
+from collections import deque
+
+class Stack():
+    def __init__(self,size):
+        self.max_size = size
+        self.queue1=deque()
+        self.queue2=deque()
+        
+    def push(self,data):
+        if self.isFull():
+            print("Stack is Full")
+            return
+        else:
+            self.queue1.append(data)
+            print("pushed:", data)
+            
+    def isFull(self):
+        return len(self.queue1) == self.max_size
+        
+    def pop(self):
+        if self.isEmpty():
+            print("Stack is empty")
+            return
+        else:
+            while len(self.queue1) > 1:
+                self.queue2.append(self.queue1.popleft())
+            popped_element = self.queue1.popleft()
+            print("popped:", popped_element)
+            self.queue1, self.queue2 = self.queue2 , self.queue1
+            
+    def isEmpty(self):
+        return len(self.queue1) == 0
+             
+stack = Stack(2)
+stack.push(2)
+stack.push(3)
+stack.push(4)
+stack.push(5)
+stack.push
+stack.pop()
+stack.pop()
+stack.push(5)
